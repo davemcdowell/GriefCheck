@@ -1,4 +1,4 @@
-![francis](https://github.com/davemcdowell/I-Hate-Griefers/assets/6724005/8209a1fe-21e3-4bd1-a4dc-cfc75c05e794 = 256x256)
+![francis](https://github.com/davemcdowell/I-Hate-Griefers/assets/6724005/8209a1fe-21e3-4bd1-a4dc-cfc75c05e794)
 # Grief Check
  Left 4 Dead 2 server plugin for checking if players are known griefers.
 
