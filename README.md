@@ -3,7 +3,7 @@
  Left 4 Dead 2 server plugin for checking if players are known griefers.
 
 # How it Works
-Uses a http request to build a list of griefers (https://github.com/davemcdowell/L4D2-Griefers/blob/main/ingest) to cross-reference the current servers spawning palyers Steam IDs against a list of known griefer IDs. For now when it finds a positive match it simply announces in-chat to other players that the given player is a known griefer.
+Uses a http request to build a list of griefers (https://github.com/davemcdowell/L4D2-Griefers/blob/main/ingest) to cross-reference any spawning players Steam ID against a list of known griefer IDs. When it finds a positive match it announces in-chat that the given player is a known griefer. This allows other players to decide what they want to do from that point on. A simple solution for an annoying problem.
 
 # Legal Stuff
 Please note there is no breach of privacy of anyone involved. Steam IDs are public information — using them in this manner is completely Ok and up-to server operators.
