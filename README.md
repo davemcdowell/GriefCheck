@@ -7,4 +7,4 @@ Uses a http request to build a list of griefers (https://github.com/davemcdowell
 
 # Legal Stuff
 Please note there is no breach of privacy of any 'griefer'. These IDs are public information — using them in this manner is completely Ok and up-to server operators.
-I take no responsibility for any damage, or whatever else may happen using this. Other than ridding your server of griefers of course ;p
+I take no responsibility for any damage, or whatever else may happen using this; Other than ridding your server of griefers of course ;p
