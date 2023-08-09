@@ -1,4 +1,4 @@
-# GriefCheck
+# Grief Check
  Left 4 Dead 2 server plugin for checking if players are known griefers.
 
 # How it Works
