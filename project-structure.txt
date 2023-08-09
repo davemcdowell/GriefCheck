@@ -1,0 +1,67 @@
+GriefCheck/
+|
++- addons/
+|  |
+|  +- sourcemod/
+|  |  |
+|  |  +- plugins/
+|  |  |  |
+|  |  |  +- griefcheck.smx (Compiled plugin binary)
+|  |  |
+|  |  +- scripting/
+|  |  |  |
+|  |  |  +- griefcheck.sp (SourcePawn source code)
+|  |  |  |
+|  |  |  +- include/
+|  |  |     |
+|  |  |     +- httpclient.inc (HttpClient include file)
+|  |  |
+|  |  +- translations/
+|  |     |
+|  |     +- griefcheck.phrases.txt (Translation file)
+|  |
+|  +- configs/
+|     |
+|     +- griefcheck.cfg (Plugin configuration)
+|     |
+|     +- map-specific/
+|        |
+|        +- mymap_griefcheck.cfg (Map-specific configuration)
+|
++- game/
+|  |
+|  +- left4dead2/
+|     |
+|     +- addons/
+|     |  |
+|     |  +- sourcemod.vdf (Plugin registration file)
+|     |
+|     +- bin/
+|        |
+|        +- sourcemod/
+|           |
+|           +- plugins/
+|           |  |
+|           |  +- griefcheck.smx (Compiled plugin binary, symlink or copied)
+|           |
+|           +- ...
+|
++- left4dead2/
+   |
+   +- bin/
+      |
+      +- sourcemod/
+         |
+         +- plugins/
+            |
+            +- griefcheck.smx (Compiled plugin binary, symlink or copied)
+            |
+            +- ...
+         |
+         +- scripting/
+            |
+            +- griefcheck.sp (Symlink or copied for development)
+            |
+            +- include/
+               |
+               +- httpclient.inc (Symlink or copied)
