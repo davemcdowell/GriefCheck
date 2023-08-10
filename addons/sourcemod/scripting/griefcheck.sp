@@ -2,50 +2,46 @@
 #include <riptext>
 
 /**
- * Plugin public information.
+ * Grief Check Plugin
+ * Checks if players are known griefers based on a predefined list.
  */
 public Plugin myinfo =
 {
-	name = "Grief Check",
-	author = "Dave McDowell",
-	description = "Left 4 Dead 2 server plugin for checking if players are known griefers.",
-	version = "1.0",
-	url = "https://github.com/davemcdowell/I-Hate-Griefers"
+    name = "Grief Check",
+    author = "Dave McDowell",
+    description = "Detects known griefers among players in Left 4 Dead 2.",
+    version = "1.0",
+    url = "https://github.com/davemcdowell/I-Hate-Griefers"
 };
 
-const char[] kGriefersListURL = "https://raw.githubusercontent.com/davemcdowell/L4D2-Griefers/main/ingest";
-Array<const char[]> g_Griefers;
-
 /**
- * OnPluginStart kicks off our http request
- * with the provided list url
+ * Initiates the plugin by fetching the griefer list from a remote URL.
  * 
  * @noreturn
  */
 public void OnPluginStart()
 {
     HTTPRequest request = new HTTPRequest(kGriefersListURL);
-    request.Get(OnResponseReceived); 
+    request.Get(OnGrieferListFetched); 
 }
 
 /**
- * Callback for handling http response, builds an array
- * of griefers on success.
+ * Callback for handling the HTTP response containing the griefer list.
  *
- * @param HTTPResponse      http status code
+ * @param HTTPResponse      The HTTP response object containing data.
  * @noreturn
  */
-void OnResponseReceived(HTTPResponse response)
+void OnGrieferListFetched(HTTPResponse response)
 {
     if (response.Status == HTTPStatus_OK) 
     {
         JSONObject listData = view_as<JSONObject>(response.Data);
 
         JSONObjectKeys keys = listData.Keys();
-        char key[20]; // Maximum length of Steam IDs 'STEAM_X:Y:Z' format (20 chars)
+        char steamID[20]; // Maximum length of Steam IDs 'STEAM_X:Y:Z' format
 
-        while (keys.ReadKey(key)) {
-            g_Griefers.insertLast(key);
+        while (keys.ReadKey(steamID)) {
+            g_Griefers.insertLast(steamID);
         }
 
         delete keys;
@@ -54,45 +50,40 @@ void OnResponseReceived(HTTPResponse response)
     }
     else
     {
-        LogError("Failed to fetch griefers list. HTTP status: %s", response);
+        LogError("Failed to fetch the griefer list. HTTP status: %s", response);
         return;
     }
 }
 
 /**
- * OnPlayerSpawn hook, we check the given 
- * client index of the spawning player against 
- * the griefers list. 
- *
- * On a succesful match the plugin announces via
- * in-game chat that the given player is a griefer
- *
- * @param int       client index
+ * Hook triggered when a player spawns, checks if the player is a known griefer.
+ * 
+ * @param int       The client index of the spawning player.
  * @return Action
  */
 public Action OnPlayerSpawn(int client)
 {
-    // get the player's steamID
+    // Get the player's Steam ID
     const char[] steamID = GetClientAuthString(client);
 
-    // check if their ID is in our given list
+    // Check if the Steam ID is in the griefer list
     if (IsSteamIDInGriefersList(steamID))
     {
-        // get the player's name
+        // Get the player's name
         const char[] playerName = GetClientName(client);
 
-        // display message for matched player
-        PrintToChat(client, "%s was found on the griefers list!", playerName);
+        // Display a message for matched players
+        PrintToChat(client, "%s was found on the griefer list!", playerName);
     }
 
     return Plugin_Continue;
 }
 
 /**
- * Checks whether the given steamID is in our array.
+ * Checks whether the given Steam ID is in the griefer list.
  *
- * @param const char[]	steamID
- * @return bool          
+ * @param const char[]    The Steam ID to check.
+ * @return bool           True if the Steam ID is in the list, otherwise false.
  */
 public bool IsSteamIDInGriefersList(const char[] steamID)
 {
