@@ -7,7 +7,7 @@
 public Plugin myinfo =
 {
 	name = "Grief Check",
-	author = "Dave McDowell",
+	author = "MoxXi",
 	description = "Left 4 Dead 2 server plugin for checking if players are known griefers.",
 	version = "1.0",
 	url = "https://github.com/davemcdowell/I-Hate-Griefers"
